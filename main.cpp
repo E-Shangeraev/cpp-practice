@@ -118,6 +118,27 @@ void quickSort(int array[], int size) {
 // ==========================
 
 
+// ===== Insertion sort =====
+
+void insertionSort(int array[], int size) {
+  int arrayCopy[size];
+  memcpy(arrayCopy, array, size * sizeof(array[0]));
+
+  for (int i = 2; i < size; i++) {
+    int j = i;
+
+    while(j > 0 && arrayCopy[j] < arrayCopy[j - 1]) {
+      swap(arrayCopy[j], arrayCopy[j - 1]);
+      j -= 1;
+    }
+  }
+
+  printArray(arrayCopy, size, "Insertion sort:");
+}
+
+// ==========================
+
+
 int main() {
   int array[] {5, 3, 7, 8, 2, 6, 1, 9, 4, 0};
   const int size = sizeof(array) / sizeof(array[0]);
@@ -125,6 +146,7 @@ int main() {
   bubbleSort(array, size);
   selectionSort(array, size);
   quickSort(array, size);
+  insertionSort(array, size);
 
   return 0;
 }
