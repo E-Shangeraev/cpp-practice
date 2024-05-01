@@ -3,10 +3,20 @@
 
 using namespace std;
 
-void printArray(int array[], int size) {
+void printArray(int array[], int size, string title = "") {
+  cout << endl << title << endl;
+
   for (int i = 0; i < size; i++) {
     cout << array[i] << ' ';
   }
+
+  cout << endl;
+}
+
+void swap(int &i, int &j) {
+  int temp = i;
+  i = j;
+  j = temp;
 }
 
 void bubbleSort(int array[], int size) {
@@ -16,16 +26,12 @@ void bubbleSort(int array[], int size) {
   for (int i = 0; i < size - 1; i++) {
     for (int j = 0; j < size - i - 1; j++) {
       if (arrayCopy[j] > arrayCopy[j + 1]) {
-        int temp = arrayCopy[j];
-        arrayCopy[j] = arrayCopy[j + 1];
-        arrayCopy[j + 1] = temp;
+        swap(arrayCopy[j], arrayCopy[j + 1]);
       }
     }
   }
 
-  cout << "\nBubble sort:\n";
-  printArray(arrayCopy, size);
-  cout << "\n\n";
+  printArray(arrayCopy, size, "Bubble sort:");
 }
 
 void selectionSort(int array[], int size) {
@@ -41,14 +47,10 @@ void selectionSort(int array[], int size) {
       }
     }
 
-    int temp = arrayCopy[minIndex];
-    arrayCopy[minIndex] = arrayCopy[i];
-    arrayCopy[i] = temp;
+    swap(arrayCopy[minIndex], arrayCopy[i]);
   }
 
-  cout << "\nSelection sort:\n";
-  printArray(arrayCopy, size);
-  cout << "\n\n";
+  printArray(arrayCopy, size, "Selection sort:");
 }
 
 int main() {
