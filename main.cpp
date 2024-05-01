@@ -4,8 +4,6 @@
 using namespace std;
 
 void printArray(int array[], int size) {
-  cout << endl;
-
   for (int i = 0; i < size; i++) {
     cout << array[i] << ' ';
   }
@@ -25,7 +23,32 @@ void bubbleSort(int array[], int size) {
     }
   }
 
+  cout << "\nBubble sort:\n";
   printArray(arrayCopy, size);
+  cout << "\n\n";
+}
+
+void selectionSort(int array[], int size) {
+  int arrayCopy[size];
+  memcpy(arrayCopy, array, size * sizeof(array[0]));
+
+  for (int i = 0; i < size - 1; i++) {
+    int minIndex = i; 
+
+    for (int j = i + 1; j < size; j++) {
+      if (arrayCopy[j] < arrayCopy[minIndex]) {
+        minIndex = j;
+      }
+    }
+
+    int temp = arrayCopy[minIndex];
+    arrayCopy[minIndex] = arrayCopy[i];
+    arrayCopy[i] = temp;
+  }
+
+  cout << "\nSelection sort:\n";
+  printArray(arrayCopy, size);
+  cout << "\n\n";
 }
 
 int main() {
@@ -33,6 +56,7 @@ int main() {
   const int size = sizeof(array) / sizeof(array[0]);
 
   bubbleSort(array, size);
+  selectionSort(array, size);
 
   return 0;
 }
