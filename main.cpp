@@ -139,6 +139,37 @@ void insertionSort(int array[], int size) {
 // ==========================
 
 
+// ===== Shaker sort =====
+
+void shakerSort(int array[], int size) {
+  int arrayCopy[size];
+  memcpy(arrayCopy, array, size * sizeof(array[0]));
+
+  int left = 0;
+  int right = size - 1;
+
+  while (left < right) {
+    for (int i = left; i < right; i++) {
+      if (arrayCopy[i] > arrayCopy[i + 1]) {
+        swap(arrayCopy[i], arrayCopy[i + 1]);
+      }
+    }
+    right -= 1;
+
+    for (int i = right; i > left; i--) {
+      if (arrayCopy[i - 1] > arrayCopy[i]) {
+        swap(arrayCopy[i - 1], arrayCopy[i]);
+      }
+    }
+    left += 1;
+  }
+
+  printArray(arrayCopy, size, "Shaker sort:");
+}
+
+// ==========================
+
+
 int main() {
   int array[] {5, 3, 7, 8, 2, 6, 1, 9, 4, 0};
   const int size = sizeof(array) / sizeof(array[0]);
@@ -147,6 +178,7 @@ int main() {
   selectionSort(array, size);
   quickSort(array, size);
   insertionSort(array, size);
+  shakerSort(array, size);
 
   return 0;
 }
